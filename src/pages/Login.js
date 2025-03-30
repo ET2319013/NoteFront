@@ -9,14 +9,14 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
-    // e.preventDefault();
-    // try {
-    //   const res = await axios.post('http://localhost:5140/api/auth/login', { email, password });
-    //   //localStorage.setItem('token', res.data.token);
-    //   navigate('/');
-    // } catch (err) {
-    //   alert('Login failed');
-    // }
+    e.preventDefault();
+    try {
+      const res = await axios.post('http://localhost:5140/api/auth/login', { email, password });
+      localStorage.setItem('token', res.data.token);
+      navigate('/');
+    } catch (err) {
+      alert('Login failed');
+    }
   };
 
   return (

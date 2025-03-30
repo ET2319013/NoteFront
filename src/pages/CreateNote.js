@@ -10,15 +10,15 @@ const CreateNote = () => {
 
   const handleCreate = async (e) => {
     e.preventDefault();
-    // const token = localStorage.getItem('token');
-    // try {
-    //   await axios.post('http://localhost:5140/api/notes', { title, description }, {
-    //     headers: { Authorization: `Bearer ${token}` }
-    //   });
-    //   navigate('/');
-    // } catch (err) {
-    //   alert('Failed to create note');
-    // }
+    const token = localStorage.getItem('token');
+    try {
+      await axios.post('http://localhost:5140/api/notes', { title, description }, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      navigate('/');
+    } catch (err) {
+      alert('Failed to create note');
+    }
   };
 
   return (
