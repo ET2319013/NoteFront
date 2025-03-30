@@ -14,7 +14,7 @@ function App() {
 
   return (
     <div style={{ textAlign: "center", marginTop: "50px" }}>
-    <h1>React + .NET 8 API</h1>
+    <h1>Notes Manager</h1>
       <p>{message || "Loading..."}</p>
     </div>
   );
