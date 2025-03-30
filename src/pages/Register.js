@@ -9,14 +9,14 @@ const Register = () => {
   const navigate = useNavigate();
 
   const handleRegister = async (e) => {
-    // e.preventDefault();
-    // try {
-    //   const res = await axios.post('http://localhost:5140/api/auth/register', { email, password });
-    //   //localStorage.setItem('token', res.data.token);
-    //   navigate('/');
-    // } catch (err) {
-    //   alert('Registration failed');
-    // }
+    e.preventDefault();
+    try {
+      const res = await axios.post('http://localhost:5140/api/auth/register', { email, password });
+      localStorage.setItem('token', res.data.token);
+      navigate('/');
+    } catch (err) {
+      alert('Registration failed');
+    }
   };
 
   return (
