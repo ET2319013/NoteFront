@@ -13,7 +13,7 @@ const NotesList = () => {
   const fetchNotes = async () => {
     const token = localStorage.getItem('token');
     try {
-      const res = await axios.get('http://localhost:5000/api/notes', {
+      const res = await axios.get('http://localhost:5140/api/notes', {
         headers: { Authorization: `Bearer ${token}` },
         params: { search, fromDate, endDate },
       });

@@ -12,7 +12,7 @@ const CreateNote = () => {
     e.preventDefault();
     const token = localStorage.getItem('token');
     try {
-      await axios.post('http://localhost:5000/api/notes', { title, description }, {
+      await axios.post('http://localhost:5140/api/notes', { title, description }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       navigate('/');

@@ -13,7 +13,7 @@ const EditNote = () => {
     const fetchNote = async () => {
       const token = localStorage.getItem('token');
       try {
-        const res = await axios.get('http://localhost:5000/api/notes', {
+        const res = await axios.get('http://localhost:5140/api/notes', {
           headers: { Authorization: `Bearer ${token}` }
         });
         const note = res.data.find((n) => n.id === parseInt(id));
@@ -32,7 +32,7 @@ const EditNote = () => {
     e.preventDefault();
     const token = localStorage.getItem('token');
     try {
-      await axios.put(`http://localhost:5000/api/notes/${id}`, { title, description }, {
+      await axios.put(`http://localhost:5140/api/notes/${id}`, { title, description }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       navigate('/');
