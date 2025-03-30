@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import NotesList from './pages/NotesList';
+import CreateNote from './pages/CreateNote';
+import EditNote from './pages/EditNote';
 
 function App() {
-
-  const [message, setMessage] = useState("");
-
-    useEffect(() => {
-        axios.get("http://localhost:5140/api/hello")
-            .then(response => setMessage(response.data.message))
-            .catch(error => console.error("Error fetching message:", error));
-    }, []);
-
   return (
-    <div style={{ textAlign: "center", marginTop: "50px" }}>
-    <h1>Notes Manager</h1>
-      <p>{message || "Loading..."}</p>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<NotesList />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/create" element={<CreateNote />} />
+        <Route path="/edit/:id" element={<EditNote />} />
+      </Routes>
+    </Router>
   );
 }
 
