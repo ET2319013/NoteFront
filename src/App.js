@@ -18,11 +18,13 @@ function App() {
             .catch(error => console.error("Error fetching message:", error));
     }, []);
 
+  let curuser = localStorage.getItem('email')
   return (
     <div style={{ textAlign: "center", marginTop: "50px" }}>
     <h1>React + .NET 8 API</h1>
       <p>{message || "Loading..."}</p>
     <h1>My notes</h1>
+    <h1>User signed in: {curuser}</h1>
     <a class="btn btn-sm btn-outline-secondary" href="/noteslist/">
     NotesList </a>
     <a class="btn btn-sm btn-outline-secondary" href="/login/">
