@@ -33,20 +33,33 @@ function App() {
 
   const email = getUserEmailFromToken();
 
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    window.location.href = '/';
+  };
+
   return (
     <div class="button-container" style={{ textAlign: "center", marginTop: "50px" }}>
     <h1>React + .NET 8 API</h1>
       <p>{message || "Loading..."}</p>
     <h1>My notes</h1>
     <h1>User signed in: {email}</h1>
+    {email && (
     <a class="btn btn-sm btn-outline-secondary" href="/noteslist/">
-    NotesList </a>
+    NotesList </a>)
+    }
     <a class="btn btn-sm btn-outline-secondary" href="/login/">
     Login </a>
     <a class="btn btn-sm btn-outline-secondary" href="/register/">
     Register </a>
-
-
+    {email && (<a class="btn btn-sm btn-outline-secondary" href="/"
+      onClick={(e) => {
+      e.preventDefault(); // отменяет переход по ссылке
+      handleLogout();
+      }}>
+        Logout  ({email})
+    </a> )
+    }
     <Router>
       <Routes>
         <Route path="/noteslist" element={<NotesList />} />
