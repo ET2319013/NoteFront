@@ -20,7 +20,7 @@ function App() {
 
   let curuser = localStorage.getItem('email')
   return (
-    <div style={{ textAlign: "center", marginTop: "50px" }}>
+    <div class="button-container" style={{ textAlign: "center", marginTop: "50px" }}>
     <h1>React + .NET 8 API</h1>
       <p>{message || "Loading..."}</p>
     <h1>My notes</h1>
