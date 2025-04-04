@@ -18,13 +18,27 @@ function App() {
             .catch(error => console.error("Error fetching message:", error));
     }, []);
 
-  let curuser = localStorage.getItem('email')
+    const getUserEmailFromToken = () => {
+      const token = localStorage.getItem('token');
+      if (!token) return null;
+    
+      try {
+        const payload = token.split('.')[1];
+        const decoded = JSON.parse(atob(payload));
+        return decoded.email || null;
+      } catch (e) {
+        return null;
+      }
+    };
+
+  const email = getUserEmailFromToken();
+
   return (
     <div class="button-container" style={{ textAlign: "center", marginTop: "50px" }}>
     <h1>React + .NET 8 API</h1>
       <p>{message || "Loading..."}</p>
     <h1>My notes</h1>
-    <h1>User signed in: {curuser}</h1>
+    <h1>User signed in: {email}</h1>
     <a class="btn btn-sm btn-outline-secondary" href="/noteslist/">
     NotesList </a>
     <a class="btn btn-sm btn-outline-secondary" href="/login/">
