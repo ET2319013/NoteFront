@@ -28,30 +28,6 @@
   color: #61dafb;
 }
 
-.button-container a {
-  display: inline-block;
-  padding: 0.375rem 0.75rem;
-  font-size: 0.875rem;
-  font-weight: 400;
-  color: #6c757d;
-  background-color: transparent;
-  border: 1px solid #6c757d;
-  border-radius: 0.25rem;
-  text-decoration: none;
-  cursor: pointer;
-  transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
-  margin-right: 0.5rem;
-}
-
-.button-container a:last-child {
-  margin-right: 0;
-}
-
-.button-container a:hover {
-  background-color: #6c757d;
-  color: white;
-}
-
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
