@@ -1,5 +1,4 @@
-
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import backendUrl from '../Config';
@@ -12,28 +11,57 @@ const NotesList = () => {
   const navigate = useNavigate();
 
   const fetchNotes = async () => {
+    const token = localStorage.getItem("token");
+  
+    const params = {
+      search: search || "",
+      fromDate: fromDate ? new Date(fromDate).toISOString() : null,
+      endDate: endDate ? new Date(endDate).toISOString() : null,
+    };
+  
+    console.log("Sending request with params:", params);
+  
+    try {
+      const res = await axios.get("http://localhost:5140/api/notes", {
     const token = localStorage.getItem('token');
     try {
       const res = await axios.get(backendUrl + '/api/notes', {
         headers: { Authorization: `Bearer ${token}` },
-        params: { search, fromDate, endDate },
+        params,
       });
+  
+      console.log("Response received:", res.data);
       setNotes(res.data);
     } catch (err) {
-      alert('Failed to fetch notes');
+      console.error("Error fetching notes:", err.response);
+      alert(`Failed to fetch notes: ${err.response?.data?.message || "Unknown error"}`);
     }
   };
+  
 
+  // useEffect now correctly includes fetchNotes
   useEffect(() => {
     fetchNotes();
-  }, []);
+  }, [fetchNotes]);
 
   return (
     <div>
       <h2>Your Notes</h2>
-      <input placeholder="Search title..." value={search} onChange={(e) => setSearch(e.target.value)} />
-      <input type="date" value={fromDate} onChange={(e) => setFromDate(e.target.value)} />
-      <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
+      <input
+        placeholder="Search title..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+      <input
+        type="date"
+        value={fromDate}
+        onChange={(e) => setFromDate(e.target.value)}
+      />
+      <input
+        type="date"
+        value={endDate}
+        onChange={(e) => setEndDate(e.target.value)}
+      />
       <button onClick={fetchNotes}>Filter</button>
       <button onClick={() => navigate('/create')}>Create Note</button>
       <ul>
