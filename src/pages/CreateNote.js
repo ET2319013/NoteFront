@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import backendUrl from '../Config';
 
 const CreateNote = () => {
   const [title, setTitle] = useState('');
@@ -13,7 +12,7 @@ const CreateNote = () => {
     e.preventDefault();
     const token = localStorage.getItem('token');
     try {
-      await axios.post(backendUrl + '/api/notes', { title, description }, {
+      await axios.post('http://localhost:5140/api/notes', { title, description }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       navigate('/');
