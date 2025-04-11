@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import backendUrl from '../Config';
 
 const NotesList = () => {
   const [notes, setNotes] = useState([]);
@@ -21,7 +22,7 @@ const NotesList = () => {
     console.log("Sending request with params:", params);
   
     try {
-      const res = await axios.get("http://localhost:5140/api/notes", {
+      const res = await axios.get(backendUrl + '/api/notes', {
         headers: { Authorization: `Bearer ${token}` },
         params,
       });

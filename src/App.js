@@ -7,13 +7,14 @@ import EditNote from './pages/EditNote';
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import './App.css';
+import backendUrl from './Config';
 
 function App() {
 
   const [message, setMessage] = useState("");
 
     useEffect(() => {
-        axios.get("http://localhost:5140/api/hello")
+        axios.get(backendUrl + "/api/hello")
             .then(response => setMessage(response.data.message))
             .catch(error => console.error("Error fetching message:", error));
     }, []);
@@ -40,7 +41,7 @@ function App() {
 
   return (
     <div class="button-container" style={{ textAlign: "center", marginTop: "50px" }}>
-    <h1>React + .NET 8 API</h1>
+    <h1>React + .NET 9 API</h1>
       <p>{message || "Loading..."}</p>
     <h1>My notes</h1>
     <h1>User signed in: {email}</h1>
