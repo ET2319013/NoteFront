@@ -7,13 +7,14 @@ import EditNote from './pages/EditNote';
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import './App.css';
+import backendUrl from './Config';
 
 function App() {
 
   const [message, setMessage] = useState("");
 
     useEffect(() => {
-        axios.get("http://localhost:5140/api/hello")
+        axios.get(backendUrl + "/api/hello")
             .then(response => setMessage(response.data.message))
             .catch(error => console.error("Error fetching message:", error));
     }, []);

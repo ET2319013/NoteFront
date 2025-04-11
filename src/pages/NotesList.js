@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import backendUrl from '../Config';
 
 const NotesList = () => {
   const [notes, setNotes] = useState([]);
@@ -13,7 +14,7 @@ const NotesList = () => {
   const fetchNotes = async () => {
     const token = localStorage.getItem('token');
     try {
-      const res = await axios.get('http://localhost:5140/api/notes', {
+      const res = await axios.get(backendUrl + '/api/notes', {
         headers: { Authorization: `Bearer ${token}` },
         params: { search, fromDate, endDate },
       });
