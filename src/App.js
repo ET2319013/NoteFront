@@ -17,6 +17,15 @@ function App() {
         axios.get(backendUrl + "/api/hello")
             .then(response => setMessage(response.data.message))
             .catch(error => console.error("Error fetching message:", error));
+
+        //tried to clear cache
+        // const alreadyCleared = sessionStorage.getItem('dev_storage_cleared');
+        //     if (process.env.NODE_ENV === 'development' && !alreadyCleared) {
+        //       localStorage.removeItem('token'); 
+        //       sessionStorage.setItem('dev_storage_cleared', 'true');
+        //       console.log('LocalStorage cleared only once per npm start');
+        //     }
+    
     }, []);
 
     const getUserEmailFromToken = () => {

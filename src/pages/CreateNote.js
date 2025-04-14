@@ -16,7 +16,7 @@ const CreateNote = () => {
       await axios.post(backendUrl + '/api/notes', { title, description }, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      navigate('/');
+      navigate('/noteslist/');
     } catch (err) {
       alert('Failed to create note');
     }
